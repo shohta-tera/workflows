@@ -1,7 +1,7 @@
 import os
 
 from airflow import models
-from airflow.providers.cncf.kubernetes.operators.kubernets_pod import (
+from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
     KubernetesPodOperator,
 )
 from airflow.utils.dates import days_ago
