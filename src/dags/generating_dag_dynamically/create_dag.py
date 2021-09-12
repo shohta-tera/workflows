@@ -26,6 +26,16 @@ def get_all_response(headers, n=0, item_list=[]):
 
 headers = {"Content-Type": "application/json", "Authorization": "jwt token"}
 response = get_all_response(headers, 0)
+"""
+Example:
+response = [
+    {
+        "id": uuid,
+        "name": "sample_name",
+        "frequency": 600
+    }
+]
+"""
 
 for record in response:
     res_id = record["id"]
