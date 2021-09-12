@@ -3,6 +3,7 @@ import json
 import boto3
 from airflow.decorators import dag, task
 from airflow.utils.dates import days_ago
+from kubernetes.client import models as k8s
 
 default_args = {"owner": "admin"}
 
@@ -19,12 +20,19 @@ def sample_job():
     # task definition by @task decorator
     @task(
         executor_config={
-            "KubernetesExecutor": {
-                "request_memory": "256Mi",
-                "request_cpu": "256m",
-                "limit_memory": "512Mi",
-                "limit_cpu": "1000m",
-            }
+            "pod_override": k8s.V1Pod(
+                spec=k8s.V1PodSpec(
+                    containers=[
+                        k8s.V1Container(
+                            name="airflow-worker",
+                            resources=k8s.V1ResourceRequirements(
+                                limits={"cpu": "1000m", "memory": "1Gi"},
+                                requests={"cpu": "250m", "memory": "256Mi"},
+                            ),
+                        )
+                    ]
+                )
+            )
         }
     )
     def create_large_data():
