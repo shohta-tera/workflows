@@ -5,7 +5,7 @@ from airflow.models.dag import get_last_dagrun
 from airflow.sensors.external_task import ExternalTaskSensor
 from airflow.utils.dates import days_ago
 from airflow.utils.session import provide_session
-from kubernets.client import models as k8s
+from kubernetes.client import models as k8s
 
 basicConfig(level=INFO)
 logger = getLogger(__name__)

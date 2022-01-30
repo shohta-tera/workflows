@@ -2,7 +2,7 @@ from logging import INFO, basicConfig, getLogger
 
 from airflow.decorators import dag, task
 from airflow.utils.dates import days_ago
-from kubernets.client import models as k8s
+from kubernetes.client import models as k8s
 
 basicConfig(level=INFO)
 logger = getLogger(__name__)
