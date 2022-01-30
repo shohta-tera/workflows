@@ -22,10 +22,10 @@ default_args = {"owner": "admin", "retries": 1}
 # DAG name
 def DAG_B():
     @provide_session
-    def _get_execution_date_of_task_a(
-        exec_date, session=None, include_externally_triggered=True, **kwargs
-    ):
-        dag_last_run = get_last_dagrun("DAG_A", session)
+    def _get_execution_date_of_task_a(exec_date, session=None, **kwargs):
+        dag_last_run = get_last_dagrun(
+            "DAG_A", session, include_externally_triggered=True
+        )
         return dag_last_run.execution_date
 
     task_a_sensor = ExternalTaskSensor(
