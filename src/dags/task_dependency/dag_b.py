@@ -20,7 +20,7 @@ default_args = {"owner": "admin", "retries": 1}
     tags=["sample-dag"],
 )
 # DAG name
-def DAG_A():
+def DAG_B():
     @provide_session
     def _get_execution_date_of_task_a(exec_date, session=None, **kwargs):
         dag_last_run = get_last_dagrun("DAG_A", session)
@@ -57,4 +57,5 @@ def DAG_A():
     beta_task = beta()
     task_a_sensor >> beta_task
 
-    return dag
+
+dag = DAG_B()

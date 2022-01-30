@@ -40,4 +40,5 @@ def DAG_A():
 
     alpha()
 
-    return dag
+
+dag = DAG_A()
